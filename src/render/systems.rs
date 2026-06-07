@@ -18,7 +18,7 @@ use bevy_render::{
     extract_resource::ExtractResource,
     render_asset::RenderAssets,
     render_resource::{
-        BindGroup, BindGroupEntry, BindingResource, Buffer, BufferDescriptor, BufferId,
+        BindGroup, BindGroupEntry, BindingResource, Buffer, BufferAddress, BufferDescriptor, BufferId, BufferUsages,
         CachedRenderPipelineId, DynamicUniformBuffer, PipelineCache, SpecializedRenderPipelines,
     },
     renderer::{RenderDevice, RenderQueue},
@@ -28,7 +28,7 @@ use bevy_render::{
 };
 use bytemuck::cast_slice;
 use itertools::Itertools;
-use wgpu_types::{BufferAddress, BufferUsages};
+//use wgpu_types::{BufferAddress, BufferUsages};
 
 /// Extracted Egui settings.
 #[derive(Resource, Deref, DerefMut, Default)]

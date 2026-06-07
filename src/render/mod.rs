@@ -60,11 +60,18 @@ use egui::{TextureFilter, TextureOptions};
 use bevy_log::{error, info, warn};
 use bevy_render::{render_resource::BindGroupLayoutDescriptor, renderer::RenderAdapterInfo};
 use systems::{EguiTextureId, EguiTransform};
-use wgpu_types::{
+/* use wgpu_types::{
     Backend, BlendState, ColorTargetState, ColorWrites, Extent3d, Features, Limits,
     MultisampleState, PrimitiveState, PushConstantRange, SamplerBindingType, ShaderStages,
     TextureDimension, TextureFormat, TextureSampleType, VertexFormat, VertexStepMode,
+}; */
+use bevy::render::render_resource::{
+    BlendState, ColorTargetState, ColorWrites, Extent3d,
+    WgpuFeatures as Features, WgpuLimits as Limits,
+    MultisampleState, PrimitiveState, PushConstantRange, SamplerBindingType, ShaderStages,
+    TextureDimension, TextureFormat, TextureSampleType, VertexStepMode,
 };
+use bevy_mesh::VertexFormat;
 
 mod render_pass;
 /// Plugin systems for the render app.
@@ -297,7 +304,7 @@ impl EguiPipeline {
         settings.bindless_mode_array_size.and_then(|desired_size| {
             // Don't enable bindless mode on Metal because it is not supported by bevy yet.
             // See: https://github.com/bevyengine/bevy/issues/18149
-            if adapter_info.backend.eq(&Backend::Metal) {
+            if format!("{:?}", adapter_info.backend) == "Metal" {
                 warn!("Bindless textures are not yet supported on metal. Disabling bindless mode. See https://github.com/bevyengine/bevy/issues/18149 for more information");
                 None
             } else if !device_features.contains(Features::TEXTURE_BINDING_ARRAY) {

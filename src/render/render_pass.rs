@@ -16,7 +16,8 @@ use bevy_render::{
     sync_world::RenderEntity,
     view::{ExtractedView, ViewTarget},
 };
-use wgpu_types::{IndexFormat, ShaderStages};
+use bevy::render::render_resource::{IndexFormat, ShaderStages};
+//use wgpu_types::{IndexFormat, ShaderStages};
 
 /// Egui pass node.
 pub struct EguiPassNode {

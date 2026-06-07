@@ -1,10 +1,9 @@
 #[cfg(target_arch = "wasm32")]
 use crate::text_agent::{is_mobile_safari, update_text_agent};
 use crate::{
-    EguiContext, EguiContextSettings, EguiGlobalSettings, EguiInput, EguiOutput, EguiZoomFactor,
+    EguiContext, EguiContextSettings, EguiGlobalSettings, EguiInput, EguiOutput,
     helpers::{QueryHelper, vec2_into_egui_pos2},
 };
-use bevy_camera::Camera;
 use bevy_ecs::{
     message::MessageIterator,
     prelude::*,
@@ -12,7 +11,6 @@ use bevy_ecs::{
 };
 use bevy_input::{
     ButtonInput, ButtonState,
-    gestures::PinchGesture,
     keyboard::{Key, KeyCode, KeyboardFocusLost, KeyboardInput},
     mouse::{MouseButton, MouseButtonInput, MouseScrollUnit, MouseWheel},
     touch::TouchInput,
@@ -21,7 +19,7 @@ use bevy_log::{self as log};
 use bevy_time::{Real, Time};
 use bevy_window::{CursorMoved, FileDragAndDrop, Ime, Window};
 use bevy_winit::WinitUserEvent;
-use egui::{Modifiers, TouchPhase, ViewportId};
+use egui::Modifiers;
 
 /// Cached pointer position, used to populate [`egui::Event::PointerButton`] messages.
 #[derive(Component, Default)]
@@ -382,33 +380,17 @@ pub fn write_modifiers_keys_state_system(
     }
 }
 
-/// Reads [`egui::Context::zoom_factor`] and writes to the [`EguiZoomFactor`] component.
-pub fn read_egui_zoom_factor_system(
-    mut egui_contexts: Query<(&mut EguiContext, &mut EguiZoomFactor)>,
-) {
-    for (mut egui_context, mut egui_zoom_factor) in &mut egui_contexts {
-        let new_zoom_factor = egui_context.get_mut().zoom_factor();
-        if egui_zoom_factor.zoom_factor != new_zoom_factor {
-            egui_zoom_factor.zoom_factor = new_zoom_factor;
-        }
-    }
-}
-
 /// Reads [`MouseButtonInput`] messages and wraps them into [`EguiInputEvent`] (only for window contexts).
 pub fn write_window_pointer_moved_messages_system(
     mut cursor_moved_reader: EguiContextMessageReader<CursorMoved>,
     mut egui_input_message_writer: MessageWriter<EguiInputEvent>,
     mut egui_contexts: Query<
-        (
-            &EguiZoomFactor,
-            &EguiContextSettings,
-            &mut EguiContextPointerPosition,
-        ),
+        (&EguiContextSettings, &mut EguiContextPointerPosition),
         With<EguiContext>,
     >,
 ) {
     for (message, context) in cursor_moved_reader.read(|message| message.window) {
-        let Some((egui_zoom_factor, context_settings, mut context_pointer_position)) =
+        let Some((context_settings, mut context_pointer_position)) =
             egui_contexts.get_some_mut(context)
         else {
             continue;
@@ -421,7 +403,8 @@ pub fn write_window_pointer_moved_messages_system(
             continue;
         }
 
-        let pointer_position = vec2_into_egui_pos2(message.position / egui_zoom_factor.zoom_factor);
+        let scale_factor = context_settings.scale_factor;
+        let pointer_position = vec2_into_egui_pos2(message.position / scale_factor);
         context_pointer_position.position = pointer_position;
         egui_input_message_writer.write(EguiInputEvent {
             context,
@@ -569,43 +552,9 @@ pub fn write_mouse_wheel_messages_system(
                 unit,
                 delta,
                 modifiers,
-                phase: TouchPhase::Move,
+                phase: egui::TouchPhase::Move,
             },
         });
-    }
-}
-
-/// Reads [`PinchGesture`] messages and wraps them into [`EguiInputEvent`] with [`egui::Event::Zoom`].
-///
-/// Bevy's `PinchGesture` doesn't carry a window entity, so this broadcasts to all window contexts
-/// (or the hovered non-window context if one exists).
-pub fn write_pinch_gesture_messages_system(
-    mut pinch_reader: MessageReader<PinchGesture>,
-    hovered_non_window_egui_context: Option<Res<HoveredNonWindowEguiContext>>,
-    mut egui_input_message_writer: MessageWriter<EguiInputEvent>,
-    map: Res<WindowToEguiContextMap>,
-) {
-    for message in pinch_reader.read() {
-        // Match egui-winit: positive delta = magnification, negative = shrink
-        let zoom_factor = message.0.exp();
-
-        if let Some(HoveredNonWindowEguiContext(context)) =
-            hovered_non_window_egui_context.as_deref()
-        {
-            egui_input_message_writer.write(EguiInputEvent {
-                context: *context,
-                event: egui::Event::Zoom(zoom_factor),
-            });
-        } else {
-            for contexts in map.window_to_contexts.values() {
-                for &context in contexts {
-                    egui_input_message_writer.write(EguiInputEvent {
-                        context,
-                        event: egui::Event::Zoom(zoom_factor),
-                    });
-                }
-            }
-        }
     }
 }
 
@@ -815,7 +764,6 @@ pub fn write_ime_messages_system(
 pub fn process_ime_system(
     mut egui_context_query: Query<(
         Entity,
-        &EguiZoomFactor,
         &EguiOutput,
         &EguiContextSettings,
         &mut EguiContext,
@@ -824,14 +772,8 @@ pub fn process_ime_system(
     window_to_egui_context_map: Res<WindowToEguiContextMap>,
     _non_send_marker: NonSendMarker,
 ) {
-    for (
-        entity,
-        &EguiZoomFactor { zoom_factor },
-        egui_output,
-        egui_settings,
-        mut egui_context,
-        mut egui_ime_state,
-    ) in &mut egui_context_query
+    for (entity, egui_output, egui_settings, mut egui_context, mut egui_ime_state) in
+        &mut egui_context_query
     {
         if !egui_settings.enable_ime {
             continue;
@@ -858,7 +800,7 @@ pub fn process_ime_system(
             }
 
             if let Some(ime) = egui_output.platform_output.ime {
-                let ime_rect_px = ime.rect * zoom_factor;
+                let ime_rect_px = ime.rect * egui_settings.scale_factor;
                 if egui_ime_state.ime_rect != Some(ime_rect_px)
                     || egui_context.get_mut().input(|i| !i.events.is_empty())
                 {
@@ -941,7 +883,6 @@ pub fn write_window_touch_messages_system(
     mut egui_input_message_writer: MessageWriter<EguiInputEvent>,
     mut egui_contexts: Query<
         (
-            &EguiZoomFactor,
             &EguiContextSettings,
             &mut EguiContextPointerPosition,
             &mut EguiContextPointerTouchId,
@@ -958,7 +899,6 @@ pub fn write_window_touch_messages_system(
 
     for (message, context) in touch_input_reader.read(|message| message.window) {
         let Some((
-            &EguiZoomFactor { zoom_factor },
             context_settings,
             mut context_pointer_position,
             mut context_pointer_touch_id,
@@ -991,7 +931,8 @@ pub fn write_window_touch_messages_system(
             continue;
         }
 
-        let touch_position = vec2_into_egui_pos2(message.position / zoom_factor);
+        let scale_factor = context_settings.scale_factor;
+        let touch_position = vec2_into_egui_pos2(message.position / scale_factor);
         context_pointer_position.position = touch_position;
         write_touch_message(
             &mut egui_input_message_writer,
@@ -1168,15 +1109,15 @@ pub fn write_egui_input_system(
     modifier_keys_state: Res<ModifierKeysState>,
     mut egui_input_reader: MessageReader<EguiInputEvent>,
     mut egui_file_dnd_message_reader: MessageReader<EguiFileDragAndDropMessage>,
-    mut egui_contexts: Query<(Entity, &mut EguiInput, &Camera)>,
+    mut egui_contexts: Query<(Entity, &mut EguiInput)>,
     windows: Query<&Window>,
     time: Res<Time<Real>>,
 ) {
     for EguiInputEvent { context, event } in egui_input_reader.read() {
         #[cfg(feature = "log_input_messages")]
-        log::warn!("{context:?}: {event:?}");
+        log::warn!("{context:?}: {message:?}");
 
-        let (_entity, mut egui_input, _camera) = match egui_contexts.get_mut(*context) {
+        let (_, mut egui_input) = match egui_contexts.get_mut(*context) {
             Ok(egui_input) => egui_input,
             Err(err) => {
                 log::error!(
@@ -1193,7 +1134,7 @@ pub fn write_egui_input_system(
         #[cfg(feature = "log_file_dnd_messages")]
         log::warn!("{context:?}: {message:?}");
 
-        let (_entity, mut egui_input, _camera) = match egui_contexts.get_mut(*context) {
+        let (_, mut egui_input) = match egui_contexts.get_mut(*context) {
             Ok(egui_input) => egui_input,
             Err(err) => {
                 log::error!(
@@ -1229,7 +1170,7 @@ pub fn write_egui_input_system(
         }
     }
 
-    for (entity, mut egui_input, camera) in egui_contexts.iter_mut() {
+    for (entity, mut egui_input) in egui_contexts.iter_mut() {
         egui_input.focused = focused_non_window_egui_context.as_deref().map_or_else(
             || {
                 window_to_egui_context_map
@@ -1240,11 +1181,6 @@ pub fn write_egui_input_system(
             },
             |context| context.0 == entity,
         );
-        egui_input
-            .viewports
-            .entry(ViewportId::ROOT)
-            .or_default()
-            .native_pixels_per_point = camera.target_scaling_factor();
         egui_input.modifiers = modifier_keys_state.to_egui_modifiers();
         egui_input.time = Some(time.elapsed_secs_f64());
     }
@@ -1394,15 +1330,14 @@ pub fn write_egui_wants_input_system(
     for mut ctx in egui_context_query.iter_mut() {
         let egui_ctx = ctx.get_mut();
         egui_wants_input.is_pointer_over_area =
-            egui_wants_input.is_pointer_over_area || egui_ctx.is_pointer_over_egui();
+            egui_wants_input.is_pointer_over_area || egui_ctx.is_pointer_over_area();
         egui_wants_input.wants_pointer_input =
-            egui_wants_input.wants_pointer_input || egui_ctx.egui_wants_pointer_input();
+            egui_wants_input.wants_pointer_input || egui_ctx.wants_pointer_input();
         egui_wants_input.is_using_pointer =
-            egui_wants_input.is_using_pointer || egui_ctx.egui_is_using_pointer();
+            egui_wants_input.is_using_pointer || egui_ctx.is_using_pointer();
         egui_wants_input.wants_keyboard_input =
-            egui_wants_input.wants_keyboard_input || egui_ctx.egui_wants_keyboard_input();
-        egui_wants_input.is_popup_open =
-            egui_wants_input.is_popup_open || egui_ctx.any_popup_open();
+            egui_wants_input.wants_keyboard_input || egui_ctx.wants_keyboard_input();
+        egui_wants_input.is_popup_open = egui_wants_input.is_popup_open || egui_ctx.is_popup_open();
     }
 }
 

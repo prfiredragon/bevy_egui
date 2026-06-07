@@ -1,6 +1,6 @@
 use crate::{
-    EguiContextSettings, EguiManagedTextures, EguiPixelsPerPoint, EguiRenderOutput,
-    EguiUserTextures,
+    EguiContextSettings, EguiManagedTextures, EguiRenderOutput, EguiUserTextures,
+    RenderComputedScaleFactor,
     render::{
         DrawCommand, DrawPrimitive, EguiBevyPaintCallback, EguiCameraView, EguiDraw, EguiPipeline,
         EguiPipelineKey, EguiViewTarget, PaintCallbackDraw,
@@ -18,9 +18,8 @@ use bevy_render::{
     extract_resource::ExtractResource,
     render_asset::RenderAssets,
     render_resource::{
-        BindGroup, BindGroupEntry, BindingResource, Buffer, BufferAddress, BufferDescriptor,
-        BufferId, BufferUsages, CachedRenderPipelineId, DynamicUniformBuffer, PipelineCache,
-        SpecializedRenderPipelines,
+        BindGroup, BindGroupEntry, BindingResource, Buffer, BufferDescriptor, BufferId,
+        CachedRenderPipelineId, DynamicUniformBuffer, PipelineCache, SpecializedRenderPipelines,
     },
     renderer::{RenderDevice, RenderQueue},
     sync_world::{MainEntity, RenderEntity},
@@ -29,7 +28,7 @@ use bevy_render::{
 };
 use bytemuck::cast_slice;
 use itertools::Itertools;
-use wgpu_types::TextureFormat;
+use wgpu_types::{BufferAddress, BufferUsages};
 
 /// Extracted Egui settings.
 #[derive(Resource, Deref, DerefMut, Default)]
@@ -100,14 +99,14 @@ pub struct EguiTransforms {
 /// the screen space with the center at (0, 0) to the normalised viewport space.
 #[derive(encase::ShaderType, Default)]
 pub struct EguiTransform {
-    /// Is affected by render target size and [`EguiPixelsPerPoint::pixels_per_point`].
+    /// Is affected by render target size, scale factor and [`EguiContextSettings::scale_factor`].
     pub scale: Vec2,
     /// Normally equals `Vec2::new(-1.0, 1.0)`.
     pub translation: Vec2,
 }
 
 impl EguiTransform {
-    /// Calculates the transform from the target size multiplied by [`EguiPixelsPerPoint::pixels_per_point`].
+    /// Calculates the transform from target size and target scale factor multiplied by [`EguiContextSettings::scale_factor`].
     pub fn new(target_size: Vec2, scale_factor: f32) -> Self {
         EguiTransform {
             scale: Vec2::new(
@@ -122,7 +121,7 @@ impl EguiTransform {
 /// Prepares Egui transforms.
 pub fn prepare_egui_transforms_system(
     mut egui_transforms: ResMut<EguiTransforms>,
-    views: Query<&EguiPixelsPerPoint>,
+    views: Query<&RenderComputedScaleFactor>,
     render_targets: Query<(&ExtractedView, &ExtractedCamera, &EguiCameraView)>,
     render_device: Res<RenderDevice>,
     render_queue: Res<RenderQueue>,
@@ -137,9 +136,7 @@ pub fn prepare_egui_transforms_system(
             continue;
         };
 
-        let &EguiPixelsPerPoint {
-            pixels_per_point: scale_factor,
-        } = views.get(egui_camera_view.0)?;
+        let &RenderComputedScaleFactor { scale_factor } = views.get(egui_camera_view.0)?;
         let offset = egui_transforms
             .buffer
             .push(&EguiTransform::new(target_size.as_vec2(), scale_factor));
@@ -280,11 +277,7 @@ pub fn queue_pipelines_system(
                 &pipeline_cache,
                 &egui_pipeline,
                 EguiPipelineKey {
-                    target_format: if extracted_camera.hdr {
-                        TextureFormat::Rgba16Float
-                    } else {
-                        TextureFormat::Rgba8UnormSrgb
-                    },
+                    hdr: extracted_camera.hdr,
                 },
             );
             Some((*main_entity, pipeline_id))
@@ -327,7 +320,7 @@ impl Default for EguiRenderTargetData {
             index_buffer: None,
             draw_commands: Vec::new(),
             postponed_updates: Vec::new(),
-            pixels_per_point: 1.0,
+            pixels_per_point: 0.0,
             target_size: UVec2::ZERO,
             key: None,
         }
@@ -340,7 +333,7 @@ pub fn prepare_egui_render_target_data_system(
     render_targets: Query<(
         Entity,
         &ExtractedView,
-        &EguiPixelsPerPoint,
+        &RenderComputedScaleFactor,
         &EguiViewTarget,
         &EguiRenderOutput,
     )>,
@@ -372,10 +365,10 @@ pub fn prepare_egui_render_target_data_system(
             continue;
         };
         data.key = Some(EguiPipelineKey {
-            target_format: view.target_format,
+            hdr: extracted_camera.hdr,
         });
 
-        data.pixels_per_point = computed_scale_factor.pixels_per_point;
+        data.pixels_per_point = computed_scale_factor.scale_factor;
         if extracted_camera
             .physical_viewport_size
             .is_none_or(|size| size.x < 1 || size.y < 1)

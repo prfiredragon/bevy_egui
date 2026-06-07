@@ -67,47 +67,47 @@
 //! cargo run --example ui
 //! ```
 //!
-//! ### ui ([live page](https://vladbat00.github.io/bevy_egui/ui), source: [examples/ui.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/ui.rs))
+//! ### ui ([live page](https://vladbat00.github.io/bevy_egui/ui), source: [examples/ui.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/ui.rs))
 //!
 //! Showcasing some more advanced UI, rendering images, hidpi scaling.
 //!
-//! ### absorb_input ([live page](https://vladbat00.github.io/bevy_egui/absorb_input), source: [examples/absorb_input.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/absorb_input.rs))
+//! ### absorb_input ([live page](https://vladbat00.github.io/bevy_egui/absorb_input), source: [examples/absorb_input.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/absorb_input.rs))
 //!
 //! Demonstrating the available options for absorbing input when Egui is using pointer or keyboard.
 //!
-//! ### color_test ([live page](https://vladbat00.github.io/bevy_egui/color_test), source: [examples/color_test.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/color_test.rs))
+//! ### color_test ([live page](https://vladbat00.github.io/bevy_egui/color_test), source: [examples/color_test.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/color_test.rs))
 //!
 //! Rendering test from [egui.rs](https://egui.rs). We don't fully pass it, help is wanted ([#291](https://github.com/vladbat00/bevy_egui/issues/291)).
 //!
-//! ### side_panel ([live page](https://vladbat00.github.io/bevy_egui/side_panel), source: [examples/side_panel.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/side_panel.rs))
+//! ### side_panel ([live page](https://vladbat00.github.io/bevy_egui/side_panel), source: [examples/side_panel.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/side_panel.rs))
 //!
 //! Showing how to display an Egui side panel and transform a camera with a perspective projection to make rendering centered relative to the remaining screen area.
 //!
-//! ### split_screen ([live page](https://vladbat00.github.io/bevy_egui/split_screen), source: [examples/split_screen.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/split_screen.rs))
+//! ### split_screen ([live page](https://vladbat00.github.io/bevy_egui/split_screen), source: [examples/split_screen.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/split_screen.rs))
 //!
 //! Demonstrating how to render multiple Egui contexts, attaching them to several cameras that target the same window.
 //!
-//! ### render_egui_to_image ([live page](https://vladbat00.github.io/bevy_egui/render_egui_to_image), source: [examples/render_egui_to_image.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/render_egui_to_image.rs))
+//! ### render_egui_to_image ([live page](https://vladbat00.github.io/bevy_egui/render_egui_to_image), source: [examples/render_egui_to_image.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/render_egui_to_image.rs))
 //!
 //! Rendering UI to an image (texture) and then using it as a mesh material texture.
 //!
-//! ### render_to_image_widget ([live page](https://vladbat00.github.io/bevy_egui/render_to_image_widget), source: [examples/render_to_image_widget.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/render_to_image_widget.rs))
+//! ### render_to_image_widget ([live page](https://vladbat00.github.io/bevy_egui/render_to_image_widget), source: [examples/render_to_image_widget.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/render_to_image_widget.rs))
 //!
 //! Rendering to a texture with Bevy and showing it as an Egui image widget.
 //!
-//! ### two_windows (source: [examples/two_windows.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/two_windows.rs))
+//! ### two_windows (source: [examples/two_windows.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/two_windows.rs))
 //!
 //! Setting up two windows with an Egui context for each.
 //!
-//! ### paint_callback ([live page](https://vladbat00.github.io/bevy_egui/paint_callback), source: [examples/paint_callback.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/paint_callback.rs))
+//! ### paint_callback ([live page](https://vladbat00.github.io/bevy_egui/paint_callback), source: [examples/paint_callback.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/paint_callback.rs))
 //!
 //! Using Egui paint callbacks.
 //!
-//! ### simple ([live page](https://vladbat00.github.io/bevy_egui/simple), source: [examples/simple.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/simple.rs))
+//! ### simple ([live page](https://vladbat00.github.io/bevy_egui/simple), source: [examples/simple.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/simple.rs))
 //!
 //! The minimal usage example from this readme.
 //!
-//! ### run_manually ([live page](https://vladbat00.github.io/bevy_egui/run_manually), source: [examples/run_manually.rs](https://github.com/vladbat00/bevy_egui/blob/v0.40.0-rc.1/examples/run_manually.rs))
+//! ### run_manually ([live page](https://vladbat00.github.io/bevy_egui/run_manually), source: [examples/run_manually.rs](https://github.com/vladbat00/bevy_egui/blob/v0.39.1/examples/run_manually.rs))
 //!
 //! The same minimal example demonstrating running Egui passes manually.
 //!
@@ -153,9 +153,14 @@ use crate::text_agent::{
     is_mobile_safari, process_safari_virtual_keyboard_system,
     write_text_agent_channel_events_system,
 };
+#[cfg(all(
+    feature = "manage_clipboard",
+    not(any(target_arch = "wasm32", target_os = "android"))
+))]
+use arboard::Clipboard;
 use bevy_app::prelude::*;
 #[cfg(feature = "render")]
-use bevy_asset::{AssetEvent, AssetId, AssetMut, Assets, Handle, load_internal_asset};
+use bevy_asset::{AssetEvent, AssetId, Assets, Handle, load_internal_asset};
 #[cfg(feature = "picking")]
 use bevy_camera::NormalizedRenderTarget;
 use bevy_derive::{Deref, DerefMut};
@@ -193,17 +198,6 @@ use output::process_output_system;
     not(any(target_arch = "wasm32", target_os = "android"))
 ))]
 use std::cell::{RefCell, RefMut};
-#[cfg(all(
-    any(
-        target_os = "linux",
-        target_os = "dragonfly",
-        target_os = "freebsd",
-        target_os = "netbsd",
-        target_os = "openbsd"
-    ),
-    feature = "manage_clipboard"
-))]
-use std::sync::{Arc, Mutex};
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
 
@@ -437,10 +431,24 @@ impl Default for EguiGlobalSettings {
 pub struct EnableMultipassForPrimaryContext;
 
 /// A component for storing Egui context settings.
-#[derive(Clone, Debug, Component, PartialEq, Eq, Reflect)]
+#[derive(Clone, Debug, Component, Reflect)]
 pub struct EguiContextSettings {
-    /// If set to `true`, a user is expected to call [`egui::Context::run_ui`] or [`egui::Context::begin_pass`] and [`egui::Context::end_pass`] manually.
+    /// If set to `true`, a user is expected to call [`egui::Context::run`] or [`egui::Context::begin_pass`] and [`egui::Context::end_pass`] manually.
     pub run_manually: bool,
+    /// Global scale factor for Egui widgets (`1.0` by default).
+    ///
+    /// This setting can be used to force the UI to render in physical pixels regardless of DPI as follows:
+    /// ```rust
+    /// use bevy::{prelude::*, window::PrimaryWindow};
+    /// use bevy_egui::EguiContextSettings;
+    ///
+    /// fn update_ui_scale_factor(mut egui_contexts: Query<(&mut EguiContextSettings, &Camera)>) {
+    ///     for (mut egui_settings, camera) in egui_contexts {
+    ///         egui_settings.scale_factor = 1.0 / camera.target_scaling_factor().unwrap_or(1.0);
+    ///     }
+    /// }
+    /// ```
+    pub scale_factor: f32,
     /// Is used as a default value for hyperlink [target](https://www.w3schools.com/tags/att_a_target.asp) hints.
     /// If not specified, `_self` will be used. Only matters in a web browser.
     #[cfg(feature = "open_url")]
@@ -459,10 +467,22 @@ pub struct EguiContextSettings {
     pub enable_ime: bool,
 }
 
+// Just to keep the PartialEq
+impl PartialEq for EguiContextSettings {
+    #[allow(clippy::let_and_return)]
+    fn eq(&self, other: &Self) -> bool {
+        let eq = self.scale_factor == other.scale_factor;
+        #[cfg(feature = "open_url")]
+        let eq = eq && self.default_open_url_target == other.default_open_url_target;
+        eq
+    }
+}
+
 impl Default for EguiContextSettings {
     fn default() -> Self {
         Self {
             run_manually: false,
+            scale_factor: 1.0,
             #[cfg(feature = "open_url")]
             default_open_url_target: None,
             #[cfg(feature = "picking")]
@@ -489,8 +509,6 @@ pub struct EguiInputSystemSettings {
     pub run_write_non_window_pointer_moved_messages_system: bool,
     /// Controls running of the [`write_mouse_wheel_messages_system`] system.
     pub run_write_mouse_wheel_messages_system: bool,
-    /// Controls running of the [`write_pinch_gesture_messages_system`] system.
-    pub run_write_pinch_gesture_messages_system: bool,
     /// Controls running of the [`write_non_window_touch_messages_system`] system.
     pub run_write_non_window_touch_messages_system: bool,
     /// Controls running of the [`write_keyboard_input_messages_system`] system.
@@ -516,7 +534,6 @@ impl Default for EguiInputSystemSettings {
             run_write_window_touch_messages_system: true,
             run_write_non_window_pointer_moved_messages_system: true,
             run_write_mouse_wheel_messages_system: true,
-            run_write_pinch_gesture_messages_system: true,
             run_write_non_window_touch_messages_system: true,
             run_write_keyboard_input_messages_system: true,
             run_write_ime_messages_system: true,
@@ -579,18 +596,7 @@ pub struct EguiFullOutput(pub Option<egui::FullOutput>);
 #[derive(Default, Resource)]
 pub struct EguiClipboard {
     #[cfg(not(target_arch = "wasm32"))]
-    clipboard: thread_local::ThreadLocal<Option<RefCell<arboard::Clipboard>>>,
-    #[cfg(all(
-        any(
-            target_os = "linux",
-            target_os = "dragonfly",
-            target_os = "freebsd",
-            target_os = "netbsd",
-            target_os = "openbsd"
-        ),
-        feature = "manage_clipboard"
-    ))]
-    wayland_clipboard: Option<Arc<Mutex<smithay_clipboard::Clipboard>>>,
+    clipboard: thread_local::ThreadLocal<Option<RefCell<Clipboard>>>,
     #[cfg(target_arch = "wasm32")]
     clipboard: web_clipboard::WebClipboard,
 }
@@ -601,7 +607,7 @@ pub struct EguiRenderOutput {
     /// Pairs of rectangles and paint commands.
     ///
     /// The field gets populated during the [`EguiPostUpdateSet::ProcessOutput`] system (belonging to bevy's [`PostUpdate`])
-    /// and processed during [`render::systems::prepare_egui_render_target_data_system`].
+    /// and processed during [`render::EguiPassNode`]'s `update`.
     pub paint_jobs: Vec<egui::ClippedPrimitive>,
     /// The change in egui textures since last frame.
     pub textures_delta: egui::TexturesDelta,
@@ -615,24 +621,11 @@ impl EguiRenderOutput {
 }
 
 /// Stores last Egui output.
-///
-/// The component gets updated during [`process_output_system`]
-/// (in the [`EguiPostUpdateSet::ProcessOutput`] set, belonging to [`PostUpdate`]).
-#[derive(Component, Clone)]
+#[derive(Component, Clone, Default)]
 pub struct EguiOutput {
-    /// Corresponds to [`egui::FullOutput::platform_output`].
+    /// The field gets updated during [`process_output_system`] (in the [`EguiPostUpdateSet::ProcessOutput`] set, belonging to [`PostUpdate`]).
     pub platform_output: egui::PlatformOutput,
-    /// Corresponds to [`egui::FullOutput::pixels_per_point`].
     pub pixels_per_point: f32,
-}
-
-impl Default for EguiOutput {
-    fn default() -> Self {
-        Self {
-            platform_output: egui::PlatformOutput::default(),
-            pixels_per_point: 1.0,
-        }
-    }
 }
 
 /// A component for storing `bevy_egui` context.
@@ -640,7 +633,6 @@ impl Default for EguiOutput {
 #[require(
     EguiContextSettings,
     EguiInput,
-    EguiZoomFactor,
     EguiContextPointerPosition,
     EguiContextPointerTouchId,
     EguiContextImeState,
@@ -916,32 +908,12 @@ impl From<EguiTextureHandle> for AssetId<Image> {
     }
 }
 
-/// Reflects the egui's zoom factor value. The component lives in the main world.
-#[derive(Component, Debug, Clone, Copy, PartialEq)]
-pub struct EguiZoomFactor {
-    /// Corresponds to [`egui::Context::zoom_factor`].
-    pub zoom_factor: f32,
-}
-
-impl Default for EguiZoomFactor {
-    fn default() -> Self {
-        Self { zoom_factor: 1.0 }
-    }
-}
-
-/// Reflects the egui's pixels per point value. The component lives only in the render world.
-#[derive(Component, Debug, Clone, Copy, PartialEq)]
-pub struct EguiPixelsPerPoint {
-    /// Corresponds to [`egui::FullOutput::pixels_per_point`].
-    pub pixels_per_point: f32,
-}
-
-impl Default for EguiPixelsPerPoint {
-    fn default() -> Self {
-        Self {
-            pixels_per_point: 1.0,
-        }
-    }
+/// Stores physical size and scale factor, is used as a helper to calculate logical size.
+/// The component lives only in the Render world.
+#[derive(Component, Debug, Default, Clone, Copy, PartialEq)]
+pub struct RenderComputedScaleFactor {
+    /// Scale factor ([`EguiContextSettings::scale_factor`] multiplied by [`bevy_camera::Camera::target_scaling_factor`]).
+    pub scale_factor: f32,
 }
 
 /// The names of `bevy_egui` nodes.
@@ -1025,7 +997,7 @@ impl Plugin for EguiPlugin {
         }
 
         #[cfg(target_arch = "wasm32")]
-        app.init_non_send::<SubscribedEvents>();
+        app.init_non_send_resource::<SubscribedEvents>();
 
         #[cfg(all(feature = "manage_clipboard", not(target_os = "android")))]
         app.init_resource::<EguiClipboard>();
@@ -1081,7 +1053,7 @@ impl Plugin for EguiPlugin {
             (
                 (setup_primary_egui_context_system, ApplyDeferred)
                     .run_if(|s: Res<EguiGlobalSettings>| s.auto_create_primary_context),
-                update_ui_screen_rect,
+                update_ui_size_and_scale_system,
             )
                 .chain()
                 .in_set(EguiStartupSet::InitContexts),
@@ -1098,7 +1070,7 @@ impl Plugin for EguiPlugin {
                 ApplyDeferred,
                 #[cfg(feature = "accesskit")]
                 setup_accesskit_system,
-                update_ui_screen_rect,
+                update_ui_size_and_scale_system,
             )
                 .chain()
                 .in_set(EguiPreUpdateSet::InitContexts),
@@ -1110,12 +1082,9 @@ impl Plugin for EguiPlugin {
                     write_modifiers_keys_state_system.run_if(input_system_is_enabled(|s| {
                         s.run_write_modifiers_keys_state_system
                     })),
-                    read_egui_zoom_factor_system,
-                    write_window_pointer_moved_messages_system
-                        .run_if(input_system_is_enabled(|s| {
-                            s.run_write_window_pointer_moved_messages_system
-                        }))
-                        .after(read_egui_zoom_factor_system),
+                    write_window_pointer_moved_messages_system.run_if(input_system_is_enabled(
+                        |s| s.run_write_window_pointer_moved_messages_system,
+                    )),
                 )
                     .in_set(EguiInputSet::InitReading),
                 (
@@ -1136,9 +1105,6 @@ impl Plugin for EguiPlugin {
                     })),
                     write_mouse_wheel_messages_system.run_if(input_system_is_enabled(|s| {
                         s.run_write_mouse_wheel_messages_system
-                    })),
-                    write_pinch_gesture_messages_system.run_if(input_system_is_enabled(|s| {
-                        s.run_write_pinch_gesture_messages_system
                     })),
                     write_keyboard_input_messages_system.run_if(input_system_is_enabled(|s| {
                         s.run_write_keyboard_input_messages_system
@@ -1303,34 +1269,55 @@ impl Plugin for EguiPlugin {
                 return;
             };
 
-            let egui_pass_2d = render::egui_pass
-                .after(bevy_core_pipeline::Core2dSystems::MainPass)
-                .before(bevy_core_pipeline::upscaling::upscaling);
-            let egui_pass_3d = render::egui_pass
-                .after(bevy_core_pipeline::Core3dSystems::MainPass)
-                .before(bevy_core_pipeline::upscaling::upscaling);
+            let egui_graph_2d = render::get_egui_graph(render_app);
+            let egui_graph_3d = render::get_egui_graph(render_app);
+            let mut graph = render_app
+                .world_mut()
+                .resource_mut::<bevy_render::render_graph::RenderGraph>();
 
-            #[cfg(feature = "bevy_ui")]
-            let (egui_pass_2d, egui_pass_3d) = {
-                use bevy_ui_render::ui_pass;
-                match self.ui_render_order {
-                    UiRenderOrder::EguiAboveBevyUi => {
-                        (egui_pass_2d.after(ui_pass), egui_pass_3d.after(ui_pass))
-                    }
-                    UiRenderOrder::BevyUiAboveEgui => {
-                        (egui_pass_2d.before(ui_pass), egui_pass_3d.before(ui_pass))
-                    }
-                }
-            };
+            if let Some(graph_2d) =
+                graph.get_sub_graph_mut(bevy_core_pipeline::core_2d::graph::Core2d)
+            {
+                graph_2d.add_sub_graph(render::graph::SubGraphEgui, egui_graph_2d);
+                graph_2d.add_node(
+                    render::graph::NodeEgui::EguiPass,
+                    render::RunEguiSubgraphOnEguiViewNode,
+                );
+                graph_2d.add_node_edge(
+                    bevy_core_pipeline::core_2d::graph::Node2d::EndMainPass,
+                    render::graph::NodeEgui::EguiPass,
+                );
+                graph_2d.add_node_edge(
+                    bevy_core_pipeline::core_2d::graph::Node2d::EndMainPassPostProcessing,
+                    render::graph::NodeEgui::EguiPass,
+                );
+                graph_2d.add_node_edge(
+                    render::graph::NodeEgui::EguiPass,
+                    bevy_core_pipeline::core_2d::graph::Node2d::Upscaling,
+                );
+            }
 
-            render_app.add_systems(
-                bevy_core_pipeline::Core2d,
-                (render::prepare_egui_pass, egui_pass_2d).chain(),
-            );
-            render_app.add_systems(
-                bevy_core_pipeline::Core3d,
-                (render::prepare_egui_pass, egui_pass_3d).chain(),
-            );
+            if let Some(graph_3d) =
+                graph.get_sub_graph_mut(bevy_core_pipeline::core_3d::graph::Core3d)
+            {
+                graph_3d.add_sub_graph(render::graph::SubGraphEgui, egui_graph_3d);
+                graph_3d.add_node(
+                    render::graph::NodeEgui::EguiPass,
+                    render::RunEguiSubgraphOnEguiViewNode,
+                );
+                graph_3d.add_node_edge(
+                    bevy_core_pipeline::core_3d::graph::Node3d::EndMainPass,
+                    render::graph::NodeEgui::EguiPass,
+                );
+                graph_3d.add_node_edge(
+                    bevy_core_pipeline::core_3d::graph::Node3d::EndMainPassPostProcessing,
+                    render::graph::NodeEgui::EguiPass,
+                );
+                graph_3d.add_node_edge(
+                    render::graph::NodeEgui::EguiPass,
+                    bevy_core_pipeline::core_3d::graph::Node3d::Upscaling,
+                );
+            }
         }
 
         #[cfg(feature = "accesskit")]
@@ -1342,6 +1329,9 @@ impl Plugin for EguiPlugin {
 
     #[cfg(feature = "render")]
     fn finish(&self, app: &mut App) {
+        #[cfg(feature = "bevy_ui")]
+        let bevy_ui_is_enabled = app.is_plugin_added::<bevy_ui_render::UiRenderPlugin>();
+
         if let Some(render_app) = app.get_sub_app_mut(RenderApp) {
             render_app
                 .insert_resource(render::EguiRenderSettings {
@@ -1374,38 +1364,59 @@ impl Plugin for EguiPlugin {
                     Render,
                     render::systems::queue_pipelines_system.in_set(RenderSystems::Queue),
                 );
-        }
 
-        // Init smithay-clipboard: it needs a wayland display handle
-        #[cfg(all(
-            any(
-                target_os = "linux",
-                target_os = "dragonfly",
-                target_os = "freebsd",
-                target_os = "netbsd",
-                target_os = "openbsd"
-            ),
-            feature = "manage_clipboard"
-        ))]
-        if let Some(display_handle_wrapper) = app
-            .world_mut()
-            .get_resource::<bevy_winit::DisplayHandleWrapper>()
-        {
-            use winit::raw_window_handle::HasDisplayHandle;
-            let raw_display_handle = display_handle_wrapper
-                .0
-                .display_handle()
-                .ok()
-                .map(|h| h.as_raw());
-            if let Some(winit::raw_window_handle::RawDisplayHandle::Wayland(display)) =
-                raw_display_handle
-            {
-                log::debug!("Initializing smithay clipboard");
-                let mut egui_clipboard = app.world_mut().resource_mut::<EguiClipboard>();
-                // Safety: display is also stored as a resource and thus has the same lifetime
-                egui_clipboard.wayland_clipboard = Some(Arc::new(Mutex::new(unsafe {
-                    smithay_clipboard::Clipboard::new(display.display.as_ptr())
-                })));
+            // Configure a fixed rendering order between Bevy UI and egui.
+            // Otherwise, this order is effectively decided at random on every game startup.
+            #[cfg(feature = "bevy_ui")]
+            if bevy_ui_is_enabled {
+                use bevy_render::render_graph::RenderLabel;
+                let mut graph = render_app
+                    .world_mut()
+                    .resource_mut::<bevy_render::render_graph::RenderGraph>();
+                let (below, above) = match self.ui_render_order {
+                    UiRenderOrder::EguiAboveBevyUi => (
+                        bevy_ui_render::graph::NodeUi::UiPass.intern(),
+                        render::graph::NodeEgui::EguiPass.intern(),
+                    ),
+                    UiRenderOrder::BevyUiAboveEgui => (
+                        render::graph::NodeEgui::EguiPass.intern(),
+                        bevy_ui_render::graph::NodeUi::UiPass.intern(),
+                    ),
+                };
+                if let Some(graph_2d) =
+                    graph.get_sub_graph_mut(bevy_core_pipeline::core_2d::graph::Core2d)
+                {
+                    // Only apply if the bevy_ui plugin is actually enabled.
+                    // In theory we could use RenderGraph::try_add_node_edge instead and ignore the result,
+                    // but that still seems to end up writing the corrupt edge into the graph,
+                    // causing the game to panic down the line.
+                    match graph_2d.get_node_state(bevy_ui_render::graph::NodeUi::UiPass) {
+                        Ok(_) => {
+                            graph_2d.add_node_edge(below, above);
+                        }
+                        Err(err) => log::warn!(
+                            error = &err as &dyn std::error::Error,
+                            "bevy_ui::UiPlugin is enabled but could not be found in 2D render graph, rendering order will be inconsistent",
+                        ),
+                    }
+                }
+                if let Some(graph_3d) =
+                    graph.get_sub_graph_mut(bevy_core_pipeline::core_3d::graph::Core3d)
+                {
+                    match graph_3d.get_node_state(bevy_ui_render::graph::NodeUi::UiPass) {
+                        Ok(_) => {
+                            graph_3d.add_node_edge(below, above);
+                        }
+                        Err(err) => log::warn!(
+                            error = &err as &dyn std::error::Error,
+                            "bevy_ui::UiPlugin is enabled but could not be found in 3D render graph, rendering order will be inconsistent",
+                        ),
+                    }
+                }
+            } else {
+                log::debug!(
+                    "bevy_ui feature is enabled, but bevy_ui::UiPlugin is disabled, not applying configured rendering order"
+                )
             }
         }
     }
@@ -1471,10 +1482,11 @@ pub fn setup_accesskit_system(
             if let Some(window_entity) = window_to_egui_context_map
                 .context_to_window
                 .get(&new_context_entity)
-                && adapters.contains_key(window_entity)
             {
-                context.ctx.enable_accesskit();
-                **manage_accessibility_updates = false;
+                if adapters.contains_key(window_entity) {
+                    context.ctx.enable_accesskit();
+                    **manage_accessibility_updates = false;
+                }
             }
         }
     });
@@ -1513,23 +1525,6 @@ impl EguiClipboard {
 
     #[cfg(not(target_arch = "wasm32"))]
     fn set_text_impl(&mut self, contents: &str) {
-        // Try wayland first
-        #[cfg(all(
-            any(
-                target_os = "linux",
-                target_os = "dragonfly",
-                target_os = "freebsd",
-                target_os = "netbsd",
-                target_os = "openbsd"
-            ),
-            feature = "manage_clipboard"
-        ))]
-        if let Some(wayland_clipboard) = &self.wayland_clipboard {
-            let wayland_clipboard = wayland_clipboard.lock().unwrap();
-            wayland_clipboard.store(contents);
-            return;
-        }
-
         if let Some(mut clipboard) = self.get()
             && let Err(err) = clipboard.set_text(contents.to_owned())
         {
@@ -1544,28 +1539,6 @@ impl EguiClipboard {
 
     #[cfg(not(target_arch = "wasm32"))]
     fn get_text_impl(&mut self) -> Option<String> {
-        // Try wayland first
-        #[cfg(all(
-            any(
-                target_os = "linux",
-                target_os = "dragonfly",
-                target_os = "freebsd",
-                target_os = "netbsd",
-                target_os = "openbsd"
-            ),
-            feature = "manage_clipboard"
-        ))]
-        if let Some(wayland_clipboard) = &self.wayland_clipboard {
-            let wayland_clipboard = wayland_clipboard.lock().unwrap();
-            return match wayland_clipboard.load() {
-                Ok(text) => Some(text),
-                Err(err) => {
-                    log::error!("Failed to get clipboard content via smithay: {err}");
-                    None
-                }
-            };
-        }
-
         if let Some(mut clipboard) = self.get() {
             match clipboard.get_text() {
                 Ok(contents) => return Some(contents),
@@ -1585,22 +1558,6 @@ impl EguiClipboard {
 
     #[cfg(not(target_arch = "wasm32"))]
     fn set_image_impl(&mut self, image: &egui::ColorImage) {
-        // Try wayland first
-        #[cfg(all(
-            any(
-                target_os = "linux",
-                target_os = "dragonfly",
-                target_os = "freebsd",
-                target_os = "netbsd",
-                target_os = "openbsd"
-            ),
-            feature = "manage_clipboard"
-        ))]
-        if self.wayland_clipboard.is_some() {
-            log::error!("Setting image to clipboard via smithay is not supported");
-            return;
-        }
-
         if let Some(mut clipboard) = self.get()
             && let Err(err) = clipboard.set_image(arboard::ImageData {
                 width: image.width(),
@@ -1618,13 +1575,13 @@ impl EguiClipboard {
     }
 
     #[cfg(not(target_arch = "wasm32"))]
-    fn get(&self) -> Option<RefMut<'_, arboard::Clipboard>> {
+    fn get(&self) -> Option<RefMut<'_, Clipboard>> {
         self.clipboard
             .get_or(|| {
-                arboard::Clipboard::new()
+                Clipboard::new()
                     .map(RefCell::new)
                     .map_err(|err| {
-                        log::error!("Failed to initialize arboard clipboard: {:?}", err);
+                        log::error!("Failed to initialize clipboard: {:?}", err);
                     })
                     .ok()
             })
@@ -1682,7 +1639,7 @@ pub fn capture_pointer_input_system(
                     continue;
                 }
 
-                if settings.capture_pointer_input && ctx.get_mut().egui_wants_pointer_input() {
+                if settings.capture_pointer_input && ctx.get_mut().wants_pointer_input() {
                     let entry = (entity, HitData::new(entity, 0.0, None, None));
                     output.write(PointerHits::new(
                         *pointer,
@@ -1746,7 +1703,7 @@ pub fn update_egui_textures_system(
     }
 
     fn update_image_rect(
-        mut dest: AssetMut<Image>,
+        dest: &mut Image,
         [x, y]: [usize; 2],
         src: &egui::ColorImage,
     ) -> Result<(), TextureAccessError> {
@@ -1860,29 +1817,30 @@ pub struct UpdateUiSizeAndScaleQuery {
     ctx: &'static mut EguiContext,
     egui_input: &'static mut EguiInput,
     egui_settings: &'static EguiContextSettings,
-    egui_output: &'static EguiOutput,
     camera: &'static bevy_camera::Camera,
 }
 
-/// Updates UI [`egui::RawInput::screen_rect`].
-pub fn update_ui_screen_rect(mut contexts: Query<UpdateUiSizeAndScaleQuery>) {
+/// Updates UI [`egui::RawInput::screen_rect`] and calls [`egui::Context::set_pixels_per_point`].
+pub fn update_ui_size_and_scale_system(mut contexts: Query<UpdateUiSizeAndScaleQuery>) {
     for mut context in contexts.iter_mut() {
-        let Some(viewport_rect) = context.camera.physical_viewport_rect() else {
+        let Some((scale_factor, viewport_rect)) = context
+            .camera
+            .target_scaling_factor()
+            .map(|scale_factor| scale_factor * context.egui_settings.scale_factor)
+            .zip(context.camera.physical_viewport_rect())
+        else {
             continue;
         };
 
         let viewport_rect = egui::Rect {
-            min: helpers::vec2_into_egui_pos2(
-                viewport_rect.min.as_vec2() / context.egui_output.pixels_per_point,
-            ),
-            max: helpers::vec2_into_egui_pos2(
-                viewport_rect.max.as_vec2() / context.egui_output.pixels_per_point,
-            ),
+            min: helpers::vec2_into_egui_pos2(viewport_rect.min.as_vec2() / scale_factor),
+            max: helpers::vec2_into_egui_pos2(viewport_rect.max.as_vec2() / scale_factor),
         };
         if viewport_rect.width() < 1.0 || viewport_rect.height() < 1.0 {
             continue;
         }
         context.egui_input.screen_rect = Some(viewport_rect);
+        context.ctx.get_mut().set_pixels_per_point(scale_factor);
     }
 }
 
@@ -1983,7 +1941,7 @@ pub fn run_egui_context_pass_loop_system(world: &mut World) {
             );
         }
 
-        let output = ctx.run_ui(input.take(), |_| {
+        let output = ctx.run(input.take(), |_| {
             let _ = world.try_run_schedule(*multipass_schedule);
         });
 

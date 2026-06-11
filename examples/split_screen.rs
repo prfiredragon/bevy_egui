@@ -3,7 +3,7 @@ use bevy_egui::{
     EguiContext, EguiContexts, EguiGlobalSettings, EguiMultipassSchedule, EguiPlugin,
     EguiPrimaryContextPass, PrimaryEguiContext, egui,
 };
-use wgpu_types::BlendState;
+use bevy::render::render_resource::BlendState ;
 
 fn main() {
     let mut app = App::new();
@@ -61,7 +61,7 @@ fn setup_system(
     // Light.
     commands.spawn((
         PointLight {
-            shadow_maps_enabled: true,
+            shadows_enabled: true,
             ..default()
         },
         Transform::from_xyz(4.0, 8.0, 4.0),

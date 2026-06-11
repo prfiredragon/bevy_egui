@@ -192,7 +192,7 @@ fn render_to_image_example_system(
     });
 
     if apply {
-        let material_clone = preview_material.into_inner().clone();
+        let material_clone = preview_material.clone();
 
         let main_material_handle = main_cube_query.single()?;
         materials.insert(main_material_handle, material_clone)?;

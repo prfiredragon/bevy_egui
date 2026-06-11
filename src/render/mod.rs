@@ -356,6 +356,64 @@ pub struct EguiPipelineKey {
     /// Equals `true` for cameras that have the [`Hdr`] component.
     pub hdr: bool,
 }
+/* 
+impl SpecializedRenderPipeline for EguiPipeline {
+    type Key = EguiPipelineKey;
+
+    fn specialize(&self, key: Self::Key) -> RenderPipelineDescriptor {
+        let mut shader_defs = Vec::new();
+        let mut push_constant_ranges = Vec::new();
+
+        if let Some(bindless) = self.bindless {
+            shader_defs.push(ShaderDefVal::UInt("BINDLESS".into(), u32::from(bindless)));
+            push_constant_ranges.push(PushConstantRange {
+                stages: ShaderStages::FRAGMENT,
+                range: 0..4,
+            });
+        }
+
+        RenderPipelineDescriptor {
+            label: Some("egui_pipeline".into()),
+            layout: vec![
+                self.transform_bind_group_layout.clone(),
+                self.texture_bind_group_layout.clone(),
+            ],
+            vertex: VertexState {
+                shader: EGUI_SHADER_HANDLE,
+                shader_defs: shader_defs.clone(),
+                entry_point: Some("vs_main".into()),
+                buffers: vec![VertexBufferLayout::from_vertex_formats(
+                    VertexStepMode::Vertex,
+                    [
+                        VertexFormat::Float32x2, // position
+                        VertexFormat::Float32x2, // UV
+                        VertexFormat::Unorm8x4,  // color (sRGB)
+                    ],
+                )],
+            },
+            fragment: Some(FragmentState {
+                shader: EGUI_SHADER_HANDLE,
+                shader_defs,
+                entry_point: Some("fs_main".into()),
+                targets: vec![Some(ColorTargetState {
+                    format: if key.hdr {
+                        ViewTarget::TEXTURE_FORMAT_HDR
+                    } else {
+                        TextureFormat::bevy_default()
+                    },
+                    blend: Some(BlendState::PREMULTIPLIED_ALPHA_BLENDING),
+                    write_mask: ColorWrites::ALL,
+                })],
+            }),
+            primitive: PrimitiveState::default(),
+            depth_stencil: None,
+            multisample: MultisampleState::default(),
+            push_constant_ranges,
+            zero_initialize_workgroup_memory: false,
+        }
+    }
+} */
+
 
 impl SpecializedRenderPipeline for EguiPipeline {
     type Key = EguiPipelineKey;

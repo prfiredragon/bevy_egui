@@ -8,7 +8,7 @@ use bevy_egui::{
     PrimaryEguiContext, egui,
 };
 use egui::{LayerId, Ui, UiBuilder};
-use wgpu_types::BlendState;
+use bevy::render::render_resource::BlendState ;
 
 fn main() {
     App::new()

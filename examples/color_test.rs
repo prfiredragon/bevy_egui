@@ -4,10 +4,7 @@ use bevy::{
     window::PrimaryWindow,
 };
 use bevy_egui::{
-    EguiContext, EguiContexts, EguiGlobalSettings, EguiInputSet, EguiMultipassSchedule, EguiPlugin,
-    EguiPrimaryContextPass, EguiTextureHandle, EguiZoomFactor, PrimaryEguiContext,
-    helpers::vec2_into_egui_pos2,
-    input::{EguiContextPointerPosition, HoveredNonWindowEguiContext},
+    EguiContext, EguiContextSettings, EguiContexts, EguiGlobalSettings, EguiInputSet, EguiMultipassSchedule, EguiPlugin, EguiPrimaryContextPass, EguiTextureHandle, PrimaryEguiContext, helpers::vec2_into_egui_pos2, input::{EguiContextPointerPosition, HoveredNonWindowEguiContext}
 };
 
 #[derive(ScheduleLabel, Clone, Debug, PartialEq, Eq, Hash)]
@@ -160,7 +157,7 @@ fn update_image_size_system(
             continue;
         };
 
-        let mut image = images
+        let image = images
             .get_mut(image_handle)
             .expect("Expected a created image");
         image.resize(Extent3d {
@@ -188,11 +185,11 @@ fn update_egui_hovered_context(
     mut egui_contexts: Query<(
         Entity,
         &mut EguiContextPointerPosition,
-        &EguiZoomFactor,
+        &EguiContextSettings,
         AnyOf<(&MeshImageEguiContext, &EguiTextureImageEguiContext)>,
     )>,
 ) {
-    for (entity, mut context_pointer_position, egui_zoom_factor, tag) in egui_contexts.iter_mut() {
+    for (entity, mut context_pointer_position, settings, tag) in egui_contexts.iter_mut() {
         if !matches!(
             (&app_state.displayed_ui, tag),
             (DisplayedUi::MeshImage, (Some(MeshImageEguiContext), None))
@@ -206,9 +203,9 @@ fn update_egui_hovered_context(
 
         // We expect to reach this code only once since we can have only 1 active context matching the conditions.
         for message in cursor_moved_reader.read() {
-            let pointer_position =
-                vec2_into_egui_pos2(message.position / egui_zoom_factor.zoom_factor)
-                    - Vec2::new(0.0, app_state.top_panel_height as f32);
+            let scale_factor = settings.scale_factor;
+            let pointer_position = vec2_into_egui_pos2(message.position / scale_factor)
+                - Vec2::new(0.0, app_state.top_panel_height as f32);
             if pointer_position.y < 0.0 {
                 commands.remove_resource::<HoveredNonWindowEguiContext>();
                 continue;
@@ -313,13 +310,13 @@ fn render_to_image_ui_system<C: Component>(
 
 use bevy_camera::RenderTarget;
 use bevy_ecs::schedule::ScheduleLabel;
+use bevy_render::render_resource::{Extent3d, TextureUsages};
 use egui::{
     Align2, Color32, FontId, Image, LayerId, Mesh, Pos2, Rect, Response, Rgba, RichText, Sense,
     Shape, Stroke, TextureHandle, TextureOptions, Ui, UiBuilder, Vec2, emath::GuiRounding, epaint,
     lerp, pos2, vec2, widgets::color_picker::show_color,
 };
 use std::{collections::HashMap, ops::DerefMut};
-use wgpu_types::{Extent3d, TextureUsages};
 
 const GRADIENT_SIZE: Vec2 = vec2(256.0, 18.0);
 
